@@ -4,190 +4,164 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.checkbox import CheckBox
-from kivy.uix.image import Image
-from kivy.uix.video import Video
+
 
 class FirstScreen(Screen):
-
-  def __init__(self, name="first"):
-    super().__init__(name=name)
-
-    layout = BoxLayout(orientation="vertical")
-    btn = Button(text="Go to main menu")
-    self.lable = Label(text="HUH", color= (1,0,0,1)) 
-    wimg = Image(source='HUH.png')
-
-
-    btn.on_press = self.main
-
-    layout.add_widget(self.lable) 
-    layout.add_widget(wimg)
-    layout.add_widget(btn)
-
-    self.add_widget(layout)
-
-  def main(self):
-    self.manager.transition.direction = "left"
-    self.manager.current = "main"
+    def __init__(self, name = "first"):
+        super().__init__(name = name)
+        layout = BoxLayout()
+        btntomainmenu = Button(text = "Go to main menu!")
+        btntomainmenu.on_press = self.mainmenu
+        self.i = 0
+        self.txt = Label(text = "This is TEXT")
+        btnclicker = Button(text=("This is BUTTON!!!"))
+        btnclicker.on_press = self.change_text
+        layout.add_widget(btntomainmenu)
+        layout.add_widget(btnclicker)
+        layout.add_widget(self.txt)
+        self.add_widget(layout)
 
 
+    def change_text(self):
+        self.txt.text = str(self.i)
+        self.i += 1
 
-  
+
+    def mainmenu(self):
+        self.manager.transition.direction = "right"
+        self.manager.current = "main"
+
+
+
+
 class SecondScreen(Screen):
+    def __init__(self, name = "second"):
+        super().__init__(name = name)
+        layout = BoxLayout()
+        btntomainmenu = Button(text = "Go to main menu!")
+        btntomainmenu.on_press = self.mainmenu
+        self.i = 0
+        self.txt = Label(text = "This is TEXT")
+        btnclicker = Button(text=("This is BUTTON!!!"))
+        btnclicker.on_press = self.change_text
+        layout.add_widget(self.txt)
+        layout.add_widget(btnclicker)
+        layout.add_widget(btntomainmenu)
+        self.add_widget(layout)
 
-  def __init__(self, name="second"):
-    super().__init__(name=name)
 
-    layout = BoxLayout(orientation="vertical")
-    btn = Button(text="Go to main menu")
-    self.lable = Label(text="HUH", color= (1,0,0,1)) 
-    wimg = Image(source='HUH.png')
+    def change_text(self):
+        self.txt.text = str(self.i)
+        self.i += 1
 
 
-    btn.on_press = self.main
+    def mainmenu(self):
+        self.manager.transition.direction = "left"
+        self.manager.current = "main"
 
-    layout.add_widget(self.lable) 
-    layout.add_widget(wimg)
-    layout.add_widget(btn)
 
-    self.add_widget(layout)
-
-  def main(self):
-    self.manager.transition.direction = "left"
-    self.manager.current = "main"
-
-def on_position_change(instance, value):
-    print('The position in the video is', value)
-
-def on_duration_change(instance, value):
-    print('The duration of the video is', value)
-
-video = Video(source='PandaSneezes.avi')
-video.bind(
-    position=on_position_change,
-    duration=on_duration_change
-)
 
 
 class ThirdScreen(Screen):
-
-  def __init__(self, name="third"):
-    super().__init__(name=name)
-
-    checkbox = CheckBox()
-    layout = BoxLayout(orientation="vertical")
-    btn = Button(text="Go to main menu")
-    self.lable = Label(text="CheckBox - Disable \n This is third screen", color= (1,0,0,1))
-
-    btn.on_press = self.main
-    checkbox.bind(active=self.on_checkbox_active)
-
-    layout.add_widget(self.lable)
-    layout.add_widget(checkbox)
-    layout.add_widget(btn)
-
-    self.add_widget(layout)
-
-  def main(self):
-    self.manager.transition.direction = "left"
-    self.manager.current = "main"
-
-  def on_checkbox_active(self, checkbox, value):  
-    if value:
-      self.lable.text = "CheckBox - Active \n Third screen" 
-      self.lable.color = (0, 1, 0, 1)
-    else:
-      self.lable.text = "CheckBox - Disable \n Third screen"
-      self.lable.color = (1, 0, 0, 1)
+    def __init__(self, name = "third"):
+        super().__init__(name = name)
+        layout = BoxLayout()
+        btntomainmenu = Button(text = "Go to main menu!")
+        btntomainmenu.on_press = self.mainmenu
+        self.i = 0
+        self.txt = Label(text = "This is TEXT")
+        btnclicker = Button(text=("This is BUTTON!!!"))
+        btnclicker.on_press = self.change_text
+        layout.add_widget(btntomainmenu)
+        layout.add_widget(btnclicker)
+        self.add_widget(layout)
+        layout.add_widget(self.txt)
 
 
-
-class FourScreen(Screen):
-
-  def __init__(self, name="four"):
-    super().__init__(name=name)
-
-    checkbox = CheckBox()
-    layout = BoxLayout(orientation="vertical")
-    btn = Button(text="Go to main menu")
-    self.lable = Label(text="CheckBox - Disable \n This is fourth screen", color= (1,0,0,1))
-
-    btn.on_press = self.main
-    checkbox.bind(active=self.on_checkbox_active)
-
-    layout.add_widget(self.lable)
-    layout.add_widget(checkbox)
-    layout.add_widget(btn)
-
-    self.add_widget(layout)
-
-  def main(self):
-    self.manager.transition.direction = "left"
-    self.manager.current = "main"
-
-  def on_checkbox_active(self, checkbox, value):  
-    if value:
-      self.lable.text = "CheckBox - Active \n Fourth screen" 
-      self.lable.color = (0, 1, 0, 1)
-    else:
-      self.lable.text = "CheckBox - Disable \n Fourth screen"
-      self.lable.color = (1, 0, 0, 1)
+    def change_text(self):
+        self.txt.text = str(self.i)
+        self.i += 1
 
 
+    def mainmenu(self):
+        self.manager.transition.direction = "right"
+        self.manager.current = "main"
 
+
+class FourthScreen(Screen):
+    def __init__(self, name = "fourth"):
+        super().__init__(name = name)
+        layout = BoxLayout()
+        btntomainmenu = Button(text = "Go to main menu!")
+        btntomainmenu.on_press = self.mainmenu
+        self.i = 0
+        self.txt = Label(text = "This is TEXT")
+        btnclicker = Button(text=("This is BUTTON!!!"))
+        btnclicker.on_press = self.change_text
+        layout.add_widget(self.txt)
+        layout.add_widget(btnclicker)
+        layout.add_widget(btntomainmenu)
+        self.add_widget(layout)
+
+
+    def change_text(self):
+        self.txt.text = str(self.i)
+        self.i += 1
+
+
+    def mainmenu(self):
+        self.manager.transition.direction = "left"
+        self.manager.current = "main"
+   
 class MainScreen(Screen):
+    def __init__(self, name = "main"):
+        super().__init__(name = name)
+        layout = BoxLayout(orientation = "vertical")
+        btn = Button(text = "First Button!")
+        btn.on_press = self.first
+        btn2 = Button(text = "Second Button!")
+        btn2.on_press = self.second
+        btn3 = Button(text = "Third Button!")
+        btn3.on_press = self.third
+        btn4 = Button(text = "Fourth Button!")
+        btn4.on_press = self.fourth
+        layout.add_widget(btn)
+        layout.add_widget(btn2)
+        layout.add_widget(btn3)
+        layout.add_widget(btn4)
+        self.add_widget(layout)
 
-  def __init__(self, name="main"):
-    super().__init__(name=name)
 
-    layout = BoxLayout(orientation="vertical")
+    def first(self):
+        self.manager.transition.direction = "left"
+        self.manager.current = "first"
 
-    btnf = Button(text="Go to first screen")
-    layout.add_widget(btnf)
 
-    btns = Button(text="Go to second screen")
-    layout.add_widget(btns)
+    def second(self):
+        self.manager.transition.direction = "right"
+        self.manager.current = "second"
+   
+    def third(self):
+        self.manager.transition.direction = "left"
+        self.manager.current = "third"
 
-    btnt = Button(text="Go to third screen")
-    layout.add_widget(btnt)
 
-    btnff = Button(text="Go to fourth screen")
-    layout.add_widget(btnff)
+    def fourth(self):
+        self.manager.transition.direction = "right"
+        self.manager.current = "fourth"
+       
 
-    btnff.on_press = self.four
-    btnt.on_press = self.third
-    btns.on_press = self.second
-    btnf.on_press = self.first
 
-    self.add_widget(layout)
-
-  def first(self):
-    self.manager.transition.direction = "up"
-    self.manager.current = "first"
-
-  def second(self):
-    self.manager.transition.direction = "down"
-    self.manager.current = "second"
-
-  def third(self):
-    self.manager.transition.direction = "left"
-    self.manager.current = "third"
-
-  def four(self):
-    self.manager.transition.direction = "right"
-    self.manager.current = "four"
-
-#__________________________________________________________________________________________________________________________________________
+   
 class MyApp(App):
-
   def build(self):
     sm = ScreenManager()
     sm.add_widget(MainScreen())
     sm.add_widget(FirstScreen())
     sm.add_widget(SecondScreen())
     sm.add_widget(ThirdScreen())
-    sm.add_widget(FourScreen())
+    sm.add_widget(FourthScreen())
     return sm
-
-
+ 
 MyApp().run()
+
